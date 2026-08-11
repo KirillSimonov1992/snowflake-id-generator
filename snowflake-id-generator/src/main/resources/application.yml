@@ -14,13 +14,10 @@ management:
       path-mapping:
         health: health
       exposure:
-        include: health
+        include: health, probes
   endpoint:
     health:
       show-details: always
       show-components: always
-  health:
-    livenessstate:
-      enabled: true
-    readinessstate:
-      enabled: true
+      probes:
+        enabled: true

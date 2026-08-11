@@ -1,15 +1,14 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: my-app
+  name: kuard
 spec:
   containers:
-    - image: my-app:1.0
-      name: my-app
-      imagePullPolicy: IfNotPresent
+    - image: jmutai/kuard-amd64
+      name: kuard
       livenessProbe:
         httpGet:
-          path: /management/health/liveness
+          path: /healthy
           port: 8080
         initialDelaySeconds: 15
         timeoutSeconds: 2
@@ -17,7 +16,7 @@ spec:
         failureThreshold: 3
       readinessProbe:
         httpGet:
-          path: /management/health/readiness
+          path: /ready
           port: 8080
         initialDelaySeconds: 5
         timeoutSeconds: 1
